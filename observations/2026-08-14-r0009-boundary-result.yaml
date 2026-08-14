@@ -1,0 +1,38 @@
+matome:
+  title: R0009 Protocol Runtime Boundary Result
+  version: 0.1
+  status:
+    implementation: completed
+    repository_ci: pending
+    local_boundary_test: passed
+  observation: >
+    The first executable Matome IR boundary test was implemented. The same
+    generic Runtime executes Protocols produced from different Matome IR
+    instances through one generic bridge. Domain-specific phase/action
+    vocabulary remains data carried by the Protocol IR; the Runtime does not
+    branch on those domain names.
+  evidence:
+    runtime_bridge: runtime/protocol_bridge.py
+    runtime_test: runtime/test_r0009_boundary.py
+    runtime_commit: 28e3204a409b0921c2c885cd70f70c0f611f7da3
+    quickstart_commit: 0651a0eb65fd43bc3e7efdec0ba7b29ea335fd73
+  verification:
+    isolated_boundary_tests: >
+      Passed in a local reconstruction of the fetched Runtime, Protocol Loader,
+      Protocol Bridge, and R0009 test boundary: 2 passed.
+    full_repository_ci: >
+      Not independently confirmed because GitHub Actions status was not
+      available through the current connector session.
+  interpretation: >
+    This does not prove complete Semantic Authority separation. It supports the
+    narrower claim that Runtime execution semantics can remain generic while
+    domain-specific Protocol vocabulary is supplied through Protocol IR data.
+  external_review_response: >
+    Gemini and Copilot correctly identified the danger of a Runtime that embeds
+    domain-specific semantics. R0009 demonstrates a narrower counterexample:
+    the Runtime need not interpret the meaning of individual domain actions in
+    order to execute the generic Protocol representation. The remaining question
+    is whether richer Protocol semantics can preserve this boundary.
+  next:
+    - R0009.1: execute richer declared transitions from Matome IR
+    - R0010: migration scaling and historical interpretation

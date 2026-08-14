@@ -1,0 +1,67 @@
+matome:
+  title: Shirakami Development Architecture
+  subtitle:
+    - Human-AI Development Environment
+    - Landscape-Based Development
+    - Protocol-First Engineering
+    - Evidence-Driven Architecture
+  version: 0.1
+  status:
+    observation: active
+    architecture: hypothesis
+    implementation: ongoing
+    verification: ongoing
+
+statement: >
+  Shirakami Development Architecture is the development environment in which
+  human questions, protocols, AI observations, evidence, repository state,
+  and architectural decisions are continuously connected and recorded.
+
+purpose:
+  - preserve development context across AI model changes
+  - make architectural decisions traceable
+  - use multiple AI systems as independent observation sources
+  - convert convergent objections into explicit experiments
+  - preserve the history of rejected, unresolved, and verified hypotheses
+
+observed_loop:
+  - human_question
+  - matome_protocol
+  - architecture_design
+  - external_ai_review
+  - comparison
+  - experiment_definition
+  - evidence_record
+  - architecture_revision
+  - re_observation
+
+boundary:
+  - AI is an observation and execution participant, not the sole authority
+  - human judgment remains responsible for adoption and research direction
+  - evidence is preserved rather than rewritten by later interpretation
+  - unverified hypotheses remain distinguishable from verified results
+
+current_observation:
+  - Gemini and GitHub Copilot independently identified similar architectural risks
+  - the convergence was recorded as research evidence
+  - the development environment itself is now treated as an experimental Landscape
+
+next_experiment:
+  id: R0009
+  name: Protocol Runtime Boundary Test
+  question: >
+    Can a generic Runtime execute different domain Protocols while remaining
+    free of domain-specific semantic authority?
+
+future_experiment:
+  id: R0010
+  name: Migration Scaling Test
+  question: >
+    Can historical interpretation and lineage be preserved without requiring
+    unbounded full-history replay for every Protocol migration?
+
+critical_rule:
+  - do_not_promote_hypothesis_to_fact
+  - record_external_objections
+  - preserve_lineage
+  - prefer_experiment_over_argument

@@ -16,7 +16,7 @@ matome:
     runtime_test: runtime/test_r0009_boundary.py
     runtime_commit: 28e3204a409b0921c2c885cd70f70c0f611f7da3
     quickstart_commit: 0651a0eb65fd43bc3e7efdec0ba7b29ea335fd73
-    research_commit: 2b81b5bdb84400ea12854afbed71ffa0aa935870
+    research_commit: e39ffb0d7979f247c40b11c1953f24b711ac2120
   verification:
     isolated_boundary_tests: >
       Passed in a local reconstruction of the fetched Runtime, Protocol Loader,

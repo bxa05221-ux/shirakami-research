@@ -1,0 +1,60 @@
+id: verification-boundary-v0.1
+title: "VERIFICATION Boundary"
+version: "0.1"
+status: "candidate"
+
+purpose: >
+  HYPOTHESIS に対して観測・確認を行った事実と、その結果に対する人間の判断を分離して記録する。
+
+flow:
+  from: "HYPOTHESIS"
+  to: "VERIFICATION"
+
+verification_record:
+  required:
+    - "verification_id"
+    - "hypothesis_id"
+    - "verification_target"
+    - "observed_result"
+    - "status"
+  status:
+    allowed:
+      - "verified"
+      - "not_verified"
+      - "inconclusive"
+      - "blocked"
+
+separation:
+  observation:
+    meaning: "何が観測・確認されたか"
+    authority: "record_only"
+  judgment:
+    meaning: "観測結果をどう扱うかという人間の判断"
+    authority: "human"
+
+invariants:
+  - "verification_record ≠ truth"
+  - "observed_result ≠ human_judgment"
+  - "AI output ≠ verification judgment"
+  - "inconclusive remains inconclusive"
+  - "blocked remains blocked"
+  - "UNKNOWN remains UNKNOWN"
+
+forbidden:
+  - "automatic truth assignment"
+  - "automatic hypothesis acceptance"
+  - "filling inconclusive or blocked states by inference"
+  - "AI-owned verification judgment"
+  - "implementation semantics"
+
+implementation_boundary:
+  status: "not_for_implementation"
+  reason: >
+    本資料は研究側の候補定義であり、Shirakami OS / UI-for-AI の実装契約ではない。
+    実装へ昇格するには、研究側で検証・確定された的目yamlによる
+    implementation_handoff が必要。
+
+unknowns:
+  - "formal schema for verification evidence"
+  - "formal boundary between verification record and human judgment"
+  - "promotion criteria from candidate to implementation handoff"

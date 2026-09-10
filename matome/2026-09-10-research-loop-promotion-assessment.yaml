@@ -1,0 +1,85 @@
+matome:
+  id: shirakami-research-loop-promotion-assessment
+  title: "研究側・可能性提示ループ 正式昇格判定"
+  version: "0.1"
+  status: "research_handoff"
+
+  purpose: >
+    既存の「研究側・可能性提示プロトコル」と、研究側で作成された
+    境界候補群との整合性を確認し、研究プロトコルとしての継続採用可否を判定する。
+
+  source_protocol:
+    id: "shirakami-research-possibility-presentation"
+    status: "research_handoff"
+
+  evaluated_candidates:
+    - id: "observation-target-type"
+      status: "research_candidate"
+    - id: "human-selection-to-hypothesis-boundary-v0.1"
+      status: "candidate"
+    - id: "verification-boundary-v0.1"
+      status: "candidate"
+    - id: "verification-to-matome-boundary-v0.1"
+      status: "candidate"
+
+  assessment:
+    check_1_flow_integrity:
+      result: "pass"
+      finding: >
+        既存プロトコルの INTUITION → POSSIBILITY → OBSERVATION_TARGET →
+        HUMAN_SELECTION → HYPOTHESIS → VERIFICATION → HUMAN_DECISION → MATOME
+        の流れを、候補群はいずれも破壊していない。
+
+    check_2_human_authority:
+      result: "pass"
+      finding: >
+        POSSIBILITY の採用、HYPOTHESIS の検証対象化、VERIFICATION の判断、
+        MATOME への正式採用はいずれも人間に帰属している。AI authority は none のまま保持されている。
+
+    check_3_unknown_preservation:
+      result: "pass"
+      finding: >
+        UNKNOWN、inconclusive、blocked、unresolved を推論で埋めないという境界が、
+        既存プロトコルおよび各候補に一貫して保持されている。
+
+    check_4_implementation_boundary:
+      result: "pass"
+      finding: >
+        候補群はいずれも implementation semantics を禁止し、正式な implementation_handoff
+        が必要であることを明示している。研究側から実装側への意味の逆流は確認されない。
+
+  decision:
+    result: "adopt_research_loop"
+    meaning: >
+      既存の「研究側・可能性提示プロトコル」を、候補境界群と整合する
+      研究側の正式な運用ループとして継続採用する。
+
+  candidate_status:
+    rule: >
+      今回の判定は研究ループ全体の整合性を確認するものであり、
+      個々の ObservationTargetType、HUMAN_SELECTION → HYPOTHESIS、
+      VERIFICATION、VERIFICATION → MATOME の候補定義を、個別の正式仕様へ昇格させるものではない。
+    status: "remain_candidate"
+
+  implementation_boundary:
+    status: "not_for_implementation"
+    reason: >
+      本判定は研究側の運用ループを正式な research_handoff として維持するためのもの。
+      Shirakami OS / UI-for-AI の実装へ渡すには、別途、人間による研究判断を経た
+      implementation_handoff が必要である。
+
+  invariants:
+    - "INTUITION ≠ TRUTH"
+    - "POSSIBILITY ≠ HYPOTHESIS"
+    - "OBSERVATION ≠ JUDGMENT"
+    - "VERIFICATION ≠ MATOME"
+    - "AI output ≠ automatic research result"
+    - "UNKNOWN remains UNKNOWN"
+    - "research decision remains human-owned"
+    - "candidate ≠ implementation contract"
+
+  next_boundary:
+    status: "awaiting_research_evidence"
+    note: >
+      次の昇格判断は、新たな理論追加ではなく、実際の研究運用において
+      このループが機能することを観測・検証した証拠に基づいて行う。

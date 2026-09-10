@@ -1,0 +1,164 @@
+matome:
+  id: shirakami-research-possibility-presentation
+  title: "研究側・可能性提示プロトコル"
+  subtitle:
+    - "Possibility Presentation Protocol"
+    - "Intuition-to-Possibility Research Flow"
+  version: "0.1"
+  status: "research_handoff"
+
+  statement: >
+    研究の入口にある直感や違和感を、直ちに真実や仮説として確定しない。
+    AIはそこから複数の可能性を提示し、人間が観測・検証するための選択肢を得る。
+    正式な判断と的目yamlへの採用は人間が行う。
+
+  premise:
+    - "直感は研究の入力になり得る"
+    - "違和感は研究の入力になり得る"
+    - "直感は証拠ではない"
+    - "可能性は仮説の採用を意味しない"
+    - "AIは可能性を提示できる"
+    - "AIは可能性の採用を決定しない"
+    - "正式な研究判断は人間が行う"
+
+  flow:
+    phase_1_intuition_capture:
+      name: "直感採取"
+      purpose:
+        - "人間が感じた直感・違和感・ひらめきを記録する"
+      output:
+        - "INTUITION"
+
+    phase_2_possibility_generation:
+      name: "可能性提示"
+      purpose:
+        - "入力された直感から複数の説明可能性を提示する"
+      ai_role:
+        - "可能性を広げる"
+        - "異なる見方を並べる"
+        - "判断材料を提示する"
+      prohibition:
+        - "可能性を真実として扱わない"
+        - "可能性を正式な仮説として採用しない"
+      output:
+        - "POSSIBILITY"
+
+    phase_3_observation_design:
+      name: "観測点提示"
+      purpose:
+        - "可能性を区別するために何を観測すればよいか整理する"
+      ai_role:
+        - "観測可能な差異を提示する"
+        - "追加情報の必要性を示す"
+      output:
+        - "OBSERVATION_TARGET"
+
+    phase_4_human_selection:
+      name: "人間選択"
+      purpose:
+        - "提示された可能性の中から検証する対象を人間が選択する"
+      authority:
+        - "HUMAN"
+
+    phase_5_hypothesis:
+      name: "仮説化"
+      purpose:
+        - "人間が選択した可能性を検証対象として扱う"
+      output:
+        - "HYPOTHESIS"
+
+    phase_6_verification:
+      name: "検証"
+      purpose:
+        - "観測された事実と仮説を照合する"
+      rule:
+        - "一つの観測結果だけで確定しない"
+        - "未確認事項はUNKNOWNとして保持する"
+
+    phase_7_research_decision:
+      name: "研究判断"
+      purpose:
+        - "検証結果を踏まえて人間が研究上の判断を行う"
+      authority:
+        - "HUMAN"
+
+    phase_8_tamoku:
+      name: "的目化"
+      purpose:
+        - "人間が正式採用した研究成果を的目yamlとして記録する"
+      condition:
+        - "人間による正式判断が存在する"
+        - "未確定事項が明示されている"
+
+  roles:
+    human:
+      role:
+        - "直感を入力する"
+        - "可能性を選択する"
+        - "仮説を採用する"
+        - "検証結果を判断する"
+        - "正式な研究成果を決定する"
+
+    ai:
+      role:
+        - "可能性を提示する"
+        - "観測点を整理する"
+        - "反証可能な差異を提示する"
+        - "UNKNOWNを保持する"
+      authority: "none"
+
+  state_types:
+    INTUITION:
+      meaning: "人間が感じた直感・違和感・ひらめき"
+      status: "unverified"
+
+    POSSIBILITY:
+      meaning: "説明可能性として提示された候補"
+      status: "unverified"
+
+    OBSERVATION_TARGET:
+      meaning: "可能性を区別するために観測すべき対象"
+      status: "unverified"
+
+    HYPOTHESIS:
+      meaning: "人間が検証対象として選択した可能性"
+      status: "under_verification"
+
+    UNKNOWN:
+      meaning: "現時点では判断できない事項"
+      status: "unresolved"
+
+    DECISION:
+      meaning: "人間による正式な研究判断"
+      authority: "human"
+
+  critical_rules:
+    - "直感を真実にしない"
+    - "可能性を仮説と同一視しない"
+    - "AIに研究判断を委ねない"
+    - "AIの提示した可能性を自動採用しない"
+    - "UNKNOWNを埋めない"
+    - "観測事実と解釈を混同しない"
+    - "的目yamlへの採用は人間が決定する"
+
+  boundary:
+    research_to_implementation:
+      rule: >
+        的目yamlとして正式採用された内容のみ、実装側の正式入力とする。
+
+    ai_output:
+      rule: >
+        AIが提示した可能性・仮説候補・観測候補は、人間による採用判断が行われるまで研究成果ではない。
+
+  principle:
+    - "直感は入口"
+    - "可能性は広げる"
+    - "観測は区別する"
+    - "仮説は選ぶ"
+    - "判断は人間がする"
+    - "的目は確定した研究成果を渡す"
+
+  symbolic_phrase:
+    - "直感を殺さない。直感を真実にもしない。"
+    - "AIは可能性を広げる。人間は何を確かめるかを選ぶ。"
+    - "決める前に、可能性を並べる。"

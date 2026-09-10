@@ -1,0 +1,87 @@
+matome:
+  id: observation-target-type
+  title: "観測点の型"
+  version: "0.1"
+  status: "research_candidate"
+
+  definition: >
+    可能性（POSSIBILITY）を区別するために、
+    何を観測すればよいかを示す研究側の構造的指標。
+    観測点は仮説ではなく、判断でもなく、
+    ただ「区別のための観測対象」を示す。
+
+  candidate_types:
+    FACTUAL_POINT:
+      meaning: "事実として観測可能な対象"
+      examples:
+        - "温度"
+        - "時間"
+        - "位置"
+      status: "observable"
+      rules:
+        - "解釈を含めない"
+        - "事実のみを扱う"
+
+    DIFFERENCE_POINT:
+      meaning: "可能性A/Bを区別するための差異"
+      examples:
+        - "Aが成立するならXが観測される"
+        - "Bが成立するならYが観測される"
+      status: "observable"
+      rules:
+        - "差異を明確にする"
+        - "仮説化しない"
+
+    STRUCTURAL_POINT:
+      meaning: "対象の構造・関係性に関する観測点"
+      examples:
+        - "因果関係の有無"
+        - "依存関係の有無"
+      status: "observable"
+      rules:
+        - "構造を観測する"
+        - "意味化しない"
+
+    LIMIT_POINT:
+      meaning: "観測できない領域・未観測領域の確認"
+      examples:
+        - "観測不能な範囲"
+        - "UNKNOWNの保持"
+      status: "unobservable"
+      rules:
+        - "未観測を埋めない"
+        - "未観測を保持する"
+
+    CONTRADICTION_POINT:
+      meaning: "可能性同士の矛盾を観測する"
+      examples:
+        - "AとBが同時に成立しない条件"
+      status: "observable"
+      rules:
+        - "矛盾を観測する"
+        - "判断は人間が行う"
+
+  output_format:
+    observation_target:
+      - type: "FACTUAL_POINT | DIFFERENCE_POINT | STRUCTURAL_POINT | LIMIT_POINT | CONTRADICTION_POINT"
+        description: "観測すべき対象の説明"
+        purpose: "何を区別するための観測点か"
+        status: "unverified"
+
+  critical_rules:
+    - "観測点は仮説ではない"
+    - "観測点は判断ではない"
+    - "観測点は可能性の採用を意味しない"
+    - "観測点は区別のために存在する"
+    - "UNKNOWNを埋めない"
+    - "観測不能領域はLIMIT_POINTとして保持する"
+
+  boundary:
+    relation_to_possibility_presentation: >
+      可能性提示プロトコルにおける OBSERVATION_TARGET の
+      型候補として扱う。ただし、この分類自体は現時点では
+      research_candidate であり、正式な研究成果とはしない。
+
+    implementation: >
+      実装側への正式入力にはしない。実装採用には、
+      人間による研究判断と正式な implementation_handoff が必要。

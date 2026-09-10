@@ -1,0 +1,61 @@
+id: verification-to-matome-boundary-v0.1
+title: "VERIFICATION → MATOME Boundary"
+version: "0.1"
+status: "candidate"
+
+purpose: >
+  検証で得られた観測結果と、人間が最終的に研究結果としてまとめる判断を分離する。
+
+flow:
+  from: "VERIFICATION"
+  to: "MATOME"
+
+matome:
+  required:
+    - "matome_id"
+    - "source_verification_ids"
+    - "human_decision"
+    - "status"
+  status:
+    allowed:
+      - "adopted"
+      - "rejected"
+      - "continued"
+      - "unresolved"
+
+separation:
+  verification:
+    meaning: "検証によって記録された観測結果"
+    authority: "record_only"
+  human_decision:
+    meaning: "検証結果を研究上の結果としてどう扱うかという人間の判断"
+    authority: "human"
+  matome:
+    meaning: "人間の判断を含む研究結果の記録"
+
+invariants:
+  - "VERIFICATION ≠ MATOME"
+  - "observed_result ≠ human_decision"
+  - "MATOME ≠ automatic AI conclusion"
+  - "unresolved remains unresolved"
+  - "UNKNOWN remains UNKNOWN"
+  - "research decision remains human-owned"
+
+forbidden:
+  - "automatic promotion of verification to matome"
+  - "AI-owned research decision"
+  - "filling unresolved states by inference"
+  - "manufacturing missing verification evidence"
+  - "implementation semantics"
+
+implementation_boundary:
+  status: "not_for_implementation"
+  reason: >
+    本資料は研究側の候補定義であり、Shirakami OS / UI-for-AI の実装契約ではない。
+    実装へ昇格するには、研究側で検証・確定された的目yamlによる
+    implementation_handoff が必要。
+
+unknowns:
+  - "formal MATOME schema"
+  - "formal definition of human decision record"
+  - "promotion criteria from candidate to implementation handoff"

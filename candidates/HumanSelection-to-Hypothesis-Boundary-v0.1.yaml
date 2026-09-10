@@ -1,0 +1,56 @@
+id: human-selection-to-hypothesis-boundary-v0.1
+title: "HUMAN_SELECTION → HYPOTHESIS Boundary"
+version: "0.1"
+status: "candidate"
+
+purpose: >
+  人間が選択した POSSIBILITY を、検証対象として HYPOTHESIS に昇格させる際の
+  最小境界を記録する。
+
+flow:
+  from: "HUMAN_SELECTION"
+  to: "HYPOTHESIS"
+
+human_selection:
+  required:
+    - "selected_possibility_id"
+    - "selection_basis"
+  principle: >
+    HYPOTHESIS は AI の出力によって自動生成・自動昇格されるものではなく、
+    人間が検証対象として選択したことを起点とする。
+
+hypothesis:
+  required:
+    - "hypothesis_id"
+    - "selected_possibility_id"
+    - "verification_target"
+    - "status"
+  status:
+    initial: "under_verification"
+
+invariants:
+  - "HUMAN_SELECTION ≠ HYPOTHESIS"
+  - "POSSIBILITY ≠ HYPOTHESIS"
+  - "HYPOTHESIS ≠ TRUTH"
+  - "AI output ≠ automatic research result"
+  - "UNKNOWN remains UNKNOWN"
+  - "verification judgment remains human-owned"
+
+forbidden:
+  - "automatic hypothesis adoption from AI output"
+  - "automatic truth assignment"
+  - "filling UNKNOWN by inference"
+  - "introducing new hypothesis categories"
+  - "implementation semantics"
+
+implementation_boundary:
+  status: "not_for_implementation"
+  reason: >
+    本資料は研究側の候補定義であり、Shirakami OS / UI-for-AI の実装契約ではない。
+    実装へ昇格するには、研究側で検証・確定された的目yamlによる
+    implementation_handoff が必要。
+
+unknowns:
+  - "formal schema for HUMAN_SELECTION"
+  - "formal schema for HYPOTHESIS"
+  - "promotion criteria from candidate to implementation handoff"
